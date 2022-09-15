@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Mighty Life Fitness</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One%7COpen+Sans:400,400i,700" rel="stylesheet">
+  <link href="{% static 'train/normalize.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'train/styles.css' %}">
+    <link href="{% static 'train/main.css' %}" rel="stylesheet">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'train/styles.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'train/favicon.ico' %}"/>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        {% block script %}{% endblock %}
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'train/logo.jpg' %}" height="70" width="80"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                        {% if user.is_staff %}
+                            <!--Staff Portal-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'newsession' %}">New Session</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'editsession' %}">Edit Session</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'exerciseview' %}">Exercises</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">Routines </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'newroutine' %}">New Routine</a>
+                                    <a class="dropdown-item" href="{% url 'routinelist' %}">Edit/ Archive Routines</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'charts' %}">Charts</a>
+                            </li>
+                        {% else %}
+                            <!--Client Portal-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'clientroutines' %}">My Routines</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'clientprogress' %}">Strength Progress</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                        <li class="nav-item">
+                            <b><a class="nav-link disabled">Logged in as {{request.user}}</a></b>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        {% block body %}
+        {% endblock %}
+      </header>
+      <div class="hero hero--landing">
+        <div class="hero__wrap wrap">
+          <div class="hero__content">
+            <h1 class="hidden">Welcome to Mighty Life Fitness!</h1>
+            <h2 class="hero__tagline">
+              Strength and conditioning.<br>
+              Become mighty!
+            </h2>
+            <a href="{% url 'register' %}" class="hero__btn-cta btn btn--primary">
+              Join Now
+            </a>
+          </div>
+
+        </div>
+      </div>
+      <section class="section">
+        <div class="wrap">
+          <h2 id="membership">Membership</h2>
+          <div class="listings row">
+            <div class="listings__item col col--4md">
+              <div class="listings__item-content">
+                <span class="listings__item-title">$64/mo</span>
+                <span class="listings__item-prop">Month-by-month</span>
+              </div>
+            </div>
+            <div class="listings__item col col--4md">
+              <div class="listings__item-content">
+                <span class="listings__item-title">$56/mo</span>
+                <span class="listings__item-prop">6 months</span>
+                <span class="listings__item-prop"></span>
+              </div>
+            </div>
+            <div class="listings__item col col--4md">
+              <div class="listings__item-content">
+                <span class="listings__item-title">$48/mo</span>
+                <span class="listings__item-prop">12 months</span>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            All tiers include access to the gym during open hours and <strong>a free personal training session</strong> every 3rd month. Our gym features:
+          </p>
+          <ul class="grid-list row">
+            <li class="col col--6 col--4md">
+              Lockers
+            </li>
+            <li class="col col--6 col--4md">
+              Showers
+            </li>
+            <li class="col col--6 col--4md">
+              6 power racks
+            </li>
+            <li class="col col--6 col--4md">
+              6 benches
+            </li>
+            <li class="col col--6 col--4md">
+              Stretching area
+            </li>
+            <li class="col col--6 col--4md">
+              Free parking
+            </li>
+          </ul>
+          <p>
+          Sign up and manager your membership now.
+          </p>
+          <p>
+            <a href="join.html" class="btn">
+               Join now
+            </a>
+          </p>
+          <h3> Image Gallery</h3>
+          <div class="row">
+            <div class="img-item col col--4md">
+              <a href="{% static 'train/gym-environment1.jpg' %}" target="_blank">
+                <img src="{% static 'train/gym-environment1.jpg' %}" alt="Training area 1" class="img-responsive">
+              </a>
+            </div>
+            <div class="img-item col col--4md">
+              <a href="{% static 'train/gym-environment2.jpg' %}" target="_blank">
+                <img src="{% static 'train/gym-environment2.jpg' %}" alt="Training area 2" class="img-responsive">
+              </a>
+            </div>
+            <div class="img-item col col--4md">
+              <a href="{% static 'train/gym-environment3.jpg' %}" target="_blank">
+                <img src="{% static 'train/gym-environment3.jpg' %}" alt="Training area 3" class="img-responsive">
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt">
+        <div class="wrap">
+          <h2>Training</h2>
+          <p>
+            Our personal training packages lets you reach your goal faster by pairing up with one of our super-qualified coaches. Here are our affordable pricing tiers:
+          </p>
+          <ul class="listings row">
+            <li class="listings__item listings__item--alt col col--6md">
+              <p class="listings__item-content listings__item-content--alt">
+                <span class="listings__item-title">$90/ea</span>
+                <span class="listings__item-prop">for 3 sessions</span>
+              </p>
+            </li>
+            <li class="listings__item listings__item--alt col col--6md">
+              <p class="listings__item-content listings__item-content--alt">
+                <span class="listings__item-title">$85/ea</span>
+                <span class="listings__item-prop">for 9 sessions</span>
+              </p>
+            </li>
+            <li class="listings__item listings__item--alt col col--6md">
+              <p class="listings__item-content listings__item-content--alt">
+                <span class="listings__item-title">$75/ea</span>
+                <span class="listings__item-prop">for 48 sessions</span>
+              </p>
+            </li>
+            <li class="listings__item listings__item--alt col col--6md">
+              <p class="listings__item-content listings__item-content--alt">
+                <span class="listings__item-title">$70/ea</span>
+                <span class="listings__item-prop">for 96 sessions</span>
+              </p>
+            </li>
+          </ul>
+          <p>
+            Sign up for membership first and you'll be able to add sessions from your dashboard online.
+          </p>
+          <p>
+            <a href="join.html" class="btn">
+              Join Now
+            </a>
+          </p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="wrap">
+          <h2>Events</h2>
+          <h3>Workshop: Hatha Yoga</h3>
+          <p>
+            March 9, 2018 from 1:00pm - 3:00pm
+          </p>
+          <p>
+            <img src="{% static 'train/event-picture.jpg' %}" alt="Hatha Yoga" class="img-responsive">
+          </p>
+          <p>
+            Join guest trainers Natalie and Haley for 90 minutes of candlelit gentle Hatha Yoga. Gentle Hatha is a blend between intentional movement and supported stretches fit for all body types. We’ll gently flow for the first half of class, ending with yin-like postures and a long relaxing savasana and massage. Suitable for all levels. Pre-registration in person is required as class size is limited.
+          </p>
+          <p>
+            <a href="events.html" class="btn">
+              View All Events
+            </a>
+          </p>
+        </div>
+      </section>
+    </div>
+    <footer class="footer">
+      <div class="wrap">
+        <p class="footer__cta">
+          Great physique awaits you.<br>
+          <a href="{% url 'register' %}" class="footer__btn-cta btn btn--primary">
+            Register Now
+          </a>
+        </p>
+        <p class="footer__copyright">
+
+        </p>
+        <p class="footer__note">
+
+        </p>
+      </div>
+    </footer>
+  </main>
+  <script src="{% static 'train/modernizr.js' %}></script>
+</body>
+</html>
