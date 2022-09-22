@@ -12,10 +12,20 @@ from django.core.paginator import Paginator
 from .models import User, Session, Setgroup, Set, Exercise, Routine
 from .forms import SessionForm, ExerciseForm, RoutineForm
 
-# NOTE: login_view, logout_view, and register are informed by CS50w projects' source code
-# https://cs50.harvard.edu/web/2020/
 def home(request):
-    return render(request,"train/index1.html")
+    data=User.objects.filter(is_staff=True)
+    exerciselist = Exercise.objects.all().order_by('name')
+    context={'trainer':data,
+             'list':exerciselist
+             }
+
+    return render(request,"train/index1.html",context)
+
+def contact(request):
+    return render(request,"train/contact.html")
+
+def events(request):
+    return render(request,"train/events.html")
 
 @login_required
 def index(request, pnum=1):
@@ -76,6 +86,7 @@ def register(request):
         try:
             user = User.objects.create_user(username, email, password,
                                             first_name=first, last_name=last)
+            user.subsciption=request.POST["pay"]
             user.save()
         except IntegrityError:
             return render(request, "train/register.html", {

@@ -5,7 +5,7 @@ from django.db import models
 class User(AbstractUser):
     """Client, Trainer, or Admin user"""
     user_choices = [('CL', 'client'), ('TR', 'trainer'), ('AD', 'admin')]
-
+    subscription = models.CharField(max_length=2,null=False)
     def __str__(self):
         return f"{self.first_name}"
 

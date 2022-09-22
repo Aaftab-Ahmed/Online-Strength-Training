@@ -1,9 +1,11 @@
 body, html {
     height: 95%;
   }
-
+.navbar-nav ul li {
+	padding: 0px 20px;
+ }
 .nav-link {
-    color: #B50000 !important;
+    color: #EB0000 !important;
 }
 
 .red-link {
