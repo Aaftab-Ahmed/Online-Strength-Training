@@ -734,7 +734,6 @@ Utilize that extra space at home to gain mastery at doing the pushup exercise. P
                 var strtoadd = firstSet + "<span class='SecSec'>" + secdHalf + "</span><br><br><button class='btn' id='readMore'  title='Click to Show More'>" + readMoreTxt + "</button><button class='btn' id='readLess' title='Click to Show Less'>" + readLessTxt + "</button>";
                 $(this).html(strtoadd);
             }
-
         });
         $(document).on("click", "#readMore,#readLess", function() {
             $(this).closest(".addReadMore").toggleClass("showlesscontent showmorecontent");
