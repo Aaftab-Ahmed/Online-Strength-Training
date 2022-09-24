@@ -1,3 +1,26 @@
+
+#trainers {
+  font-family: Arial, Helvetica, sans-serif !important;
+  border-collapse: collapse !important;
+  width: 100% !important;
+}
+
+#trainers td, #trainers th {
+  border: 1px solid #ddd !important;
+  padding: 8px !important;
+}
+
+#trainers tr:nth-child(even){background-color: #f2f2f2 !important;}
+
+#trainers tr:hover {background-color: #ddd !important;}
+
+#trainers th {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  text-align: left !important;
+  background-color: #1F1712 !important;
+  color: white !important;
+}
 /**
  * Main Stylesheet
  * ---
@@ -275,18 +298,12 @@ img {
   display:inline-block;
 }
 
-.col--1 { width: 8.3333%; }
-.col--2 { width: 16.6666667%; }
-.col--3 { width: 25%; }
-.col--4 { width: 33.3333%; }
-.col--5 { width: 41.6666667%; }
-.col--6 { width: 50%; }
-.col--7 { width: 58.3333%; }
-.col--8 { width: 66.6666667%; }
-.col--9 { width:  75%; }
-.col--10 { width: 83.3333%; }
-.col--11 { width: 91.6666667%; }
-.col--12 { width: 100%; }
+.ulp {
+  border-left: 5px solid red;
+  background-color: #f1f1f1;
+  list-style-type: none;
+  padding: 10px 20px;
+}
 
 /* > 560px (md) */
 @media screen and (min-width: 35em) {
@@ -331,11 +348,11 @@ label {
   font-weight: 600;
 }
 
-input[type="text"], input[type="email"], input[type="number"], input[type="password"], textarea, select {
+input[type="text"], input[type="email"], input[type="number"], input[type="password"], textarea, select ,option{
   display: block;
   border-radius: 0;
   padding: 0.625rem 0.5rem 0.5rem 0.5rem;
-  border: solid 3px var(--color-night);
+  border: solid 3px var(--color-night) !important;
   background-color: white;
   width: 100%;
   -webkit-appearance: none;
@@ -529,7 +546,140 @@ input.form-error, textarea.form-error, select.form-error {
 /* --------------------------------------------------------------------------*/
 /* 09. Footer                                                                */
 /* --------------------------------------------------------------------------*/
+.contact{
+	padding:80px 0px;
+	background-color: #222222;
+}
 
+.contact .content{
+	-webkit-display: flex;
+	display: flex;
+}
+
+.contact .content .box{
+	flex:0 0 50%;
+	max-width: 50%;
+	padding: 15px;
+}
+
+.contact .content .form input,
+.contact .content .form textarea{
+ height: 45px;
+ width: 100%;
+ padding:6px 12px;
+ margin-bottom: 25px;
+ background-color: transparent;
+ border:1px solid #ffffff;
+ font-family: 'Open-sans',sans-serif;
+ color:#ffffff;
+}
+.contact .content .form input:focus,
+.contact .content .form textarea:focus{
+ outline: none;
+}
+.contact .content .form input::placeholder,
+.contact .content .form textarea::placeholder{
+	color:#ffffff;
+}
+.contact .content .form textarea{
+	height: 100px;
+}
+
+.contact .content .form button{
+	border:none;
+	outline: none;
+	box-shadow: none;
+	height: 45px;
+	padding:0px 50px;
+	border:1px solid transparent;
+	background-color: #c11325;
+	color:#ffffff;
+	font-size: 15px;
+	transition: all .5s ease;
+	cursor: pointer;
+}
+.contact .content .form button:hover{
+	background-color:transparent;
+	color:#ffffff;
+    border-color:#ffffff;
+}
+
+.contact .content .text h2{
+	font-size: 30px;
+    font-weight: 500;
+    color: #c11325;
+    padding: 0px 0px 20px;
+}
+.contact .content .text p{
+    font-size: 15px;
+    line-height: 20px;
+    color: #ffffff;
+    margin: 0;
+    padding: 0px 0px 30px;
+    font-family: 'Open-sans', sans-serif;
+}
+
+.contact  ul{
+	list-style: none;
+	padding:0;
+	margin:0;
+}
+
+.contact .info li{
+	display: block;
+	margin-bottom: 15px;
+	color:#ffffff;
+	font-size: 15px;
+	letter-spacing: 1px;
+	position: relative;
+	padding-left: 40px;
+	font-family: 'Open-Sans',sans-serif;
+}
+.contact span{
+	display: inline-block;
+	position: absolute;
+	left:0px;
+	top:0px;
+	font-size: 20px;
+	color:#c11325;
+}
+.contact  {
+	padding-top: 30px;
+}
+.contact  a{
+	height: 40px;
+	width: 40px;
+	line-height: 40px;
+	text-align: center;
+	background-color: #c11325;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+    transition: all .5s ease;
+    border:1px solid transparent;
+}
+
+.contact  a:hover{
+	background-color: transparent;
+    border-color: #ffffff;
+}
+
+.contact{
+	color:#ffffff;
+	font-size: 20px;
+}
+
+.contact .copy{
+	border-top:1px solid #333333;
+	margin-top: 30px;
+	padding-top: 20px;
+	color:#c5c5c5;
+	font-size: 15px;
+}
+
+footer{
+    margin-top: auto;
+}
 .footer {
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -568,37 +718,37 @@ input.form-error, textarea.form-error, select.form-error {
 }
 
 .hero--landing {
-  background-image: url(../img/hero-landing.jpg);
+
   background-position: top center;
 }
 
 .hero--join {
-  background-image: url(../img/hero-join.jpg);
+
   background-position: top center;
 }
 
 .hero--events {
-  background-image: url(../img/hero-events.jpg);
+
   background-position: top center;
 }
 
 .hero--about {
-  background-image: url(../img/hero-about.jpg);
+  background-image: url('static/train/hero-about.jpg');
   background-position: top center;
 }
 
 .hero--contact {
-  background-image: url(../img/hero-contact.jpg);
+  background-image: url('static/train/hero-contact.jpg');
   background-position: top center;
 }
 
 .hero--login {
-  background-image: url(../img/hero-login.jpg);
+  background-image: url('static/train/hero-login.jpg');
   background-position: top center;
 }
 
 .hero--register {
-  background-image: url(../img/hero-login.jpg);
+  background-image: url('static/train/hero-login.jpg');
   background-position: top center;
   height: 10.25rem; /* 164px */
 }

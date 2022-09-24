@@ -4,18 +4,26 @@
 <html lang="en">
     <head>
         <title>
-            {% block title %}Charts{% endblock %} | Pure Conditioning
+            {% block title %}Charts{% endblock %} | Life Condition
         </title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="{% static 'train/styles.css' %}">
-        <link rel="stylesheet" href="{% static 'train/styleguide.css' %}">
-        <link rel="stylesheet" href="{% static 'train/main.css' %}">
-        <link rel="stylesheet" href="{% static 'train/normalize.css' %}">
-        <link rel="shortcut icon" href="{% static 'train/favicon.ico' %}"/>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'train/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'train/normalize.css' %}">
+        <link rel="stylesheet" href="{% static 'train/main.css' %}">
+        <link rel="shortcut icon" href="{% static 'train/favicon.ico' %}"/>
+        <style>
+            body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+footer{
+    margin-top: auto;
+}
+        </style>
         {% block script %}{% endblock %}
     </head>
 
@@ -71,6 +79,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                         </li>
+                                <a class="nav-link" href="{% url 'event' %}">Events</a>
+                            </li>
                         <li class="nav-item">
                             <b><a class="nav-link disabled">Logged in as {{request.user}}</a></b>
                         </li>
@@ -84,12 +94,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'register' %}">Register</a>
                         </li>
+                        <li class="nav-item">
+                                <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                            </li>
+                    <li class="nav-item">
+                                <a class="nav-link" href="{% url 'event' %}">Events</a>
+                            </li>
                     {% endif %}
                 </ul>
             </div>
         </nav>
         {% block body %}
         {% endblock %}
+        <div>
+
+            </div>
      </div>
       </section>
     </div>
@@ -100,12 +119,13 @@
           </a>
         </p>
         <p class="footer__copyright">
+            ©System Zombies
         </p>
         <p class="footer__note">
         </p>
       </div>
     </footer>
   </main>
-  <script src="{% static 'train/modernizr.js' %}></script>
+  <script src="{% static 'train/modernizr.js' %}"> </script>
 </body>
 </html>

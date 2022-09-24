@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <title>System Zombies Strength and Training</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One%7COpen+Sans:400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="{% static 'train/normalize.css' %}" rel="stylesheet">
+    <link href="{% static 'train/main.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'train/styles.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'train/favicon.ico' %}"/>
+     {% block script %}{% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'train/logo.jpg' %}" height="70" width="80"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                        {% if user.is_staff %}
+                            <!--Staff Portal-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'newsession' %}">New Session</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'editsession' %}">Edit Session</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'exerciseview' %}">Exercises</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">Routines </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'newroutine' %}">New Routine</a>
+                                    <a class="dropdown-item" href="{% url 'routinelist' %}">Edit/ Archive Routines</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'charts' %}">Charts</a>
+                            </li>
+                        {% else %}
+                            <!--Client Portal-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'clientroutines' %}">My Routines</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'clientprogress' %}">Strength Progress</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                            </li>
+                    <li class="nav-item">
+                                <a class="nav-link" href="{% url 'event' %}">Events</a>
+                            </li>
+                        <li class="nav-item">
+                            <b><a class="nav-link disabled">Logged in as {{request.user}}</a></b>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                            </li>
+                    <li class="nav-item">
+                                <a class="nav-link" href="{% url 'event' %}">Events</a>
+                            </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        {% block body %}
+        {% endblock %}
+      </header>
+      <div class="hero hero--contact">
+        <div class="hero__wrap wrap">
+          <div class="hero__content">
+            <h1 class="hero__title">
+              Contact
+            </h1>
+          </div>
+
+        </div>
+      </div>
+      <section class="section">
+        <div class="wrap">
+          <h2>Information</h2>
+          <p>
+            For membership, training and club inquiries, you can contact us through email, phone or by using contact form below.
+              you can also subscribe for Updates
+          </p>
+          <ul class="listings row">
+            <li class="listings__item col col--6md">
+              <p class="listings__item-content">
+                <span class="listings__item-title">Membership & Billing</span>
+                  <span class="listings__item-prop">Through Register<br>
+                      <button href="{% url 'register' %}" style="border: solid 3px var(--color-night) !important;" class="footer__btn-cta btn btn--primary"> register</button></span>
+              </p>
+            </li>
+            <li class="listings__item col col--6md">
+              <p class="listings__item-content">
+                <span class="listings__item-title">General</span>
+                <span class="listings__item-prop"><a href="mailto:systemzombies">system zombies</a></span>
+                <span class="listings__item-prop">12345678</span>
+              </p>
+            </li>
+          </ul>
+          <h2>Location</h2>
+          <p>
+            We're conveniently located  at <strong>Banglore</strong>.
+          </p>
+          <p>
+            <strong>Open Hours</strong><br>
+            Weekdays: 6am - 11pm<br>
+            Saturdays: 6am - 10pm<br>
+            Sundays and holidays: 8am - 10pm<br>
+          </p>
+          <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=smvit&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://mcpenation.com/">Minecraft Website</a></div><style>.mapouter{position:relative;text-align:right;width:600px;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:600px;height:400px;}.gmap_iframe {width:600px!important;height:400px!important;}</style></div>
+        </div>
+      </section>
+      <section class="section section--alt">
+        <div class="wrap wrap--md">
+          <h2>Contact Us</h2>
+            <div class="form-group">
+              <label>Name</label>
+              <input id="thename" type="text" name="name" required placeholder="Your name...">
+                <p id="1" style="color:red;"></p>
+            </div>
+            <div class="form-group">
+              <label >Email</label>
+              <input id="themail" type="email" name="email" required placeholder="Your email...">
+                <p id="2" style="color:red;"></p>
+            </div>
+            <div class="form-group">
+              <label >Message</label>
+              <textarea id="themsg" name="message" rows="6" required placeholder="Ask us a question..."></textarea>
+                <p id="3" style="color:red;"></p>
+            </div>
+            <div class="form-group">
+                <button onCLick="sendemail()" style="border: solid 3px var(--color-night) !important;"  class="footer__btn-cta btn btn--primary">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+    <footer class="footer">
+      <div class="wrap">
+        <p class="footer__cta">
+          Great physique awaits you.<br>
+          <a href="{% url 'register' %}" class="footer__btn-cta btn btn--primary">
+            Join Now
+          </a>
+        </p>
+        <p class="footer__copyright">
+          &copy; System Zombies
+        </p>
+        <p class="footer__note">
+          <a href="https://github.com/System-Zombies-S-C" target="_blank">GitHub</a>
+        </p>
+      </div>
+    </footer>
+  </main>
+  <script src="{% static 'train/modernizr.js' %}"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script>
+        function sendemail() {
+    console.log("submitted")
+      var userid = "Vw_XJ6bBCT28Oxgk-"
+      emailjs.init(userid);
+      var thename = document.getElementById('thename').value;
+      var themail = document.getElementById('themail').value;
+      var themsg = document.getElementById('themsg').value;
+      var validmail = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
+
+      if (thename == "") {
+        document.getElementById('1').innerHTML="Please Enter Name!";
+      }
+      else if (themail == "" || themail.match(!validmail)) {
+         document.getElementById('2').innerHTML="Please Enter Valid Email!";
+      }
+
+      else if (themsg == "") {
+         document.getElementById('3').innerHTML="Please Enter Message!";
+      }
+      else {
+        var contactdetail = {
+          from_name: thename,
+          from_email: themail,
+          message: themsg
+        };
+
+        emailjs.send('service_n4kplom', 'template_ytxj42d', contactdetail).then(function (res) {
+          alert("Sent Successfully");
+        },
+          reason => {
+            alert("Error Occur");
+          })
+      }
+    }
+  </script>
+</body>
+</html>
